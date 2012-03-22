@@ -6,3 +6,12 @@ specResult.R	: R program to calculate baseline-calibrated spectra with the SBC a
 figure1.R		: R procedure to plot figures 
 data_230.dat	: Spectral data for the temprate bandpass (942 kB)
 data_36000.dat	: Spectral data for 10-hour (147.5 MB)
+
+Usage:
+1. Download all R scripts and data.
+2. In the R console, set the working directory as
+    setwd('THE_DIRECTORY_WHERE_FILES_ARE_DOWNLOADED')
+3. Run the R script as
+    source('figure1.R')
+
+Then, figure*.pdf will be generated in the working directory.
