@@ -44,9 +44,10 @@ lines(spline10sec[,600], col='red', lwd=2)
 dev.off()
 # Prepare a PDF to plot figure 4
 cat(sprintf("Start processing for figure 4.\n"))
+cat(sprintf("-- Warning : This process requires long time (more than 1 hour for 2.7 GHz CPU). \n"))
 pdf("figure4.pdf")
 cat(sprintf("-- Calculating Allan Variances with various integration time (1, 2, 4, 8, …, 32768 sec).\n"))
-av32768 <- allanvar_period(caled32768, c(2^(0:15)))
+av32768 <- allanvar_period(caled32768, c(2^(0:15)))		# Caution : This process requires long time (more than 1 hour for 2.7 GHz CPU)
 plot(av32768[,1], log='xy', pch=20, cex=0.4, ylim=c(1.0e-11, 1.0e-5), type='l', xlab='Channel Separation [ch]', ylab='Allan Variance')
 for(i in 1:15){lines(av32768[,i])}
 dev.off()
@@ -109,3 +110,82 @@ lines(10*(1:length(av10)), av10)
 par(new=T); plot(30*(1:length(av30)), av30, log='xy', pch=0, xlab='', ylab='', main='', xlim=c(10,3600), ylim=c(4e-11, max(av10)))
 lines(30*(1:length(av30)), av30)
 dev.off()
+# Prepare a PDF to plot figure 9
+cat(sprintf("Start processing for figure 9.\n"))
+source('specResult.R')
+OnOff <- OnoffSpecResult( spec36000, spec230, 20, 45 )
+Spline5 <- SplineSpecResult( spec36000, spec230, 5, 45 )
+Spline15 <- SplineSpecResult( spec36000, spec230, 15, 45 )
+pdf('figure9.pdf')
+plot(OnOff$onoff_spec[2:1024,1], type='s', xlab='Frequency [ch]', ylab='Power Spectrum [scaled by Tsys]', main='On-Off Spectrum', ylim=c(-1.5e-3, 1.5e-3))
+plot(OnOff$onoff_bl_spec[2:1024,1], type='s', xlab='Frequency [ch]', ylab='Power Spectrum [scaled by Tsys]', main='On-Off Spectrum', ylim=c(-1.5e-3, 1.5e-3))
+plot(Spline5$spline_spec[2:1024,1], type='s', xlab='Frequency [ch]', ylab='Power Spectrum [scaled by Tsys]', main='Spline-Smoothed Spectrum', ylim=c(-1.5e-3, 1.5e-3))
+plot(Spline5$spline_bl_spec[2:1024,1], type='s', xlab='Frequency [ch]', ylab='Power Spectrum [scaled by Tsys]', main='Spline-Smoothed Spectrum', ylim=c(-1.5e-3, 1.5e-3))
+plot(Spline15$spline_spec[2:1024,1], type='s', xlab='Frequency [ch]', ylab='Power Spectrum [scaled by Tsys]', main='Spline-Smoothed Spectrum', ylim=c(-1.5e-3, 1.5e-3))
+plot(Spline15$spline_bl_spec[2:1024,1], type='s', xlab='Frequency [ch]', ylab='Power Spectrum [scaled by Tsys]', main='Spline-Smoothed Spectrum', ylim=c(-1.5e-3, 1.5e-3))
+dev.off()
+# Prepare a PDF to plot figure 10
+cat(sprintf("Start processing for figure 10.\n"))
+source('specRMS.R')
+onoff_result <- specRMS(spec36000, spec230,45)
+integ_case2 <- (1:405)*80/60
+pdf('figure10.pdf')
+plot(onoff_result$rms1_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='Integration time [min]', ylab='Residual r.m.s. [scaled by Tsys]', pch=19)
+polygon(c(1:540, 540:1), c(onoff_result$rms1bl_max, rev(onoff_result$rms1bl_min)), col='grey', lty='blank')
+par(new=T); plot(onoff_result$rms1_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='', ylab='', pch=19)
+lines(onoff_result$rms1bl_med)
+polygon(c(integ_case2, rev(integ_case2)), c(onoff_result$rms2bl_max, rev(onoff_result$rms2bl_min)), col='grey', lty='blank')
+par(new=T); plot(integ_case2, onoff_result$rms2_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='', ylab='', pch=0)
+lines(integ_case2, onoff_result$rms2bl_med)
+dev.off()
+# Prepare a PDF to plot figure 11
+cat(sprintf("Start processing for figure 11.\n"))
+spec2 <- specRMSscan(spec36000, spec230, 2) # 2-ch interval spline nodes
+spec3 <- specRMSscan(spec36000, spec230, 3) # 3-ch interval spline nodes
+spec4 <- specRMSscan(spec36000, spec230, 4) # 4-ch interval spline nodes
+spec6 <- specRMSscan(spec36000, spec230, 6) # 6-ch interval spline nodes
+spec8 <- specRMSscan(spec36000, spec230, 8) # 8-ch interval spline nodes
+spec11 <- specRMSscan(spec36000, spec230, 11) # 11-ch interval spline nodes
+spec16 <- specRMSscan(spec36000, spec230, 16) # 16-ch interval spline nodes
+spec22 <- specRMSscan(spec36000, spec230, 22) # 22-ch interval spline nodes
+spec32 <- specRMSscan(spec36000, spec230, 32) # 32-ch interval spline nodes
+spec45 <- specRMSscan(spec36000, spec230, 45) # 45-ch interval spline nodes
+spec64 <- specRMSscan(spec36000, spec230, 64) # 64-ch interval spline nodes
+spec91 <- specRMSscan(spec36000, spec230, 91) # 91-ch interval spline nodes
+spec128 <- specRMSscan(spec36000, spec230, 128) # 128-ch interval spline nodes
+spec181 <- specRMSscan(spec36000, spec230, 181) # 181-ch interval spline nodes
+period <- c(2,3,4,6,8,11,16,22,32,45,64,91,128,181)
+
+pdf('figure11.pdf')
+med2 <- c(median(spec2$rms2), median(spec3$rms2), median(spec4$rms2), median(spec6$rms2),median(spec8$rms2), median(spec11$rms2),median(spec16$rms2), median(spec22$rms2),median(spec32$rms2), median(spec45$rms2),median(spec64$rms2), median(spec91$rms2),median(spec128$rms2),median(spec181$rms2) )
+max2 <- c(max(spec2$rms2), max(spec3$rms2), max(spec4$rms2), max(spec6$rms2),max(spec8$rms2), max(spec11$rms2),max(spec16$rms2), max(spec22$rms2),max(spec32$rms2), max(spec45$rms2),max(spec64$rms2), max(spec91$rms2),max(spec128$rms2),max(spec181$rms2))
+min2 <- c(min(spec2$rms2), min(spec3$rms2), min(spec4$rms2), min(spec6$rms2),min(spec8$rms2), min(spec11$rms2),min(spec16$rms2), min(spec22$rms2),min(spec32$rms2), min(spec45$rms2),min(spec64$rms2), min(spec91$rms2),min(spec128$rms2),min(spec181$rms2))
+
+med3 <- c(median(spec2$rms3), median(spec3$rms3), median(spec4$rms3), median(spec6$rms3),median(spec8$rms3), median(spec11$rms3),median(spec16$rms3), median(spec22$rms3),median(spec32$rms3), median(spec45$rms3),median(spec64$rms3), median(spec91$rms3),median(spec128$rms3),median(spec181$rms3) )
+max3 <- c(max(spec2$rms3), max(spec3$rms3), max(spec4$rms3), max(spec6$rms3),max(spec8$rms3), max(spec11$rms3),max(spec16$rms3), max(spec22$rms3),max(spec32$rms3), max(spec45$rms3),max(spec64$rms3), max(spec91$rms3),max(spec128$rms3),max(spec181$rms3))
+min3 <- c(min(spec2$rms3), min(spec3$rms3), min(spec4$rms3), min(spec6$rms3),min(spec8$rms3), min(spec11$rms3),min(spec16$rms3), min(spec22$rms3),min(spec32$rms3), min(spec45$rms3),min(spec64$rms3), min(spec91$rms3),min(spec128$rms3),min(spec181$rms3))
+
+med_bl2 <- c(median(spec2$rms_bl2), median(spec3$rms_bl2), median(spec4$rms_bl2), median(spec6$rms_bl2),median(spec8$rms_bl2), median(spec11$rms_bl2),median(spec16$rms_bl2), median(spec22$rms_bl2),median(spec32$rms_bl2), median(spec45$rms_bl2),median(spec64$rms_bl2), median(spec91$rms_bl2),median(spec128$rms_bl2),median(spec181$rms_bl2) )
+max_bl2 <- c(max(spec2$rms_bl2), max(spec3$rms_bl2), max(spec4$rms_bl2), max(spec6$rms_bl2),max(spec8$rms_bl2), max(spec11$rms_bl2),max(spec16$rms_bl2), max(spec22$rms_bl2),max(spec32$rms_bl2), max(spec45$rms_bl2),max(spec64$rms_bl2), max(spec91$rms_bl2),max(spec128$rms_bl2),max(spec181$rms_bl2))
+min_bl2 <- c(min(spec2$rms_bl2), min(spec3$rms_bl2), min(spec4$rms_bl2), min(spec6$rms_bl2),min(spec8$rms_bl2), min(spec11$rms_bl2),min(spec16$rms_bl2), min(spec22$rms_bl2),min(spec32$rms_bl2), min(spec45$rms_bl2),min(spec64$rms_bl2), min(spec91$rms_bl2),min(spec128$rms_bl2),min(spec181$rms_bl2))
+
+med_bl3 <- c(median(spec2$rms_bl3), median(spec3$rms_bl3), median(spec4$rms_bl3), median(spec6$rms_bl3),median(spec8$rms_bl3), median(spec11$rms_bl3),median(spec16$rms_bl3), median(spec22$rms_bl3),median(spec32$rms_bl3), median(spec45$rms_bl3),median(spec64$rms_bl3), median(spec91$rms_bl3),median(spec128$rms_bl3),median(spec181$rms_bl3) )
+max_bl3 <- c(max(spec2$rms_bl3), max(spec3$rms_bl3), max(spec4$rms_bl3), max(spec6$rms_bl3),max(spec8$rms_bl3), max(spec11$rms_bl3),max(spec16$rms_bl3), max(spec22$rms_bl3),max(spec32$rms_bl3), max(spec45$rms_bl3),max(spec64$rms_bl3), max(spec91$rms_bl3),max(spec128$rms_bl3),max(spec181$rms_bl3))
+min_bl3 <- c(min(spec2$rms_bl3), min(spec3$rms_bl3), min(spec4$rms_bl3), min(spec6$rms_bl3),min(spec8$rms_bl3), min(spec11$rms_bl3),min(spec16$rms_bl3), min(spec22$rms_bl3),min(spec32$rms_bl3), min(spec45$rms_bl3),min(spec64$rms_bl3), min(spec91$rms_bl3),min(spec128$rms_bl3),min(spec181$rms_bl3))
+
+
+plot(period, med2, pch=19, log='xy', ylim=c(2e-4, 1e-3), xlab='Spline Node Interval [ch]', ylab='Residual r.m.s. [scaled by Tsys]', main='Residuals in Spline-Smoothed ON-OFF Spectra')
+polygon(c(period, rev(period)), c(max_bl2, rev(min_bl2)), col='grey', lty='blank')
+polygon(c(period, rev(period)), c(max_bl3, rev(min_bl3)), col='grey', lty='blank')
+par(new=T); plot(period, med2, pch=19, log='xy', ylim=c(2e-4, 1e-3), xlab='', ylab='', main=''); lines(period, med2)
+par(new=T); plot(period, med3, pch=0, log='xy', ylim=c(2e-4, 1e-3), xlab='', ylab='', main=''); lines(period, med3)
+par(new=T); plot(period, med_bl2, pch=19, log='xy', ylim=c(2e-4, 1e-3), xlab='', ylab='', main=''); lines(period, med_bl2, lty='dashed')
+par(new=T); plot(period, med_bl3, pch=0, log='xy', ylim=c(2e-4, 1e-3), xlab='', ylab='', main=''); lines(period, med_bl3, lty='dashed')
+abline(h=mean(spec2$rms1),  lty='dotted')
+
+cat(sprintf("MED2 = %5.2e / %5.2e / %5.2e\n", med2, max2, min2))
+cat(sprintf("w/BL MED2 = %5.2e / %5.2e / %5.2e\n", med_bl2, max_bl2, min_bl2))
+cat(sprintf("MED3 = %5.2e / %5.2e / %5.2e\n", med3, max3, min3))
+cat(sprintf("w/BL MED3 = %5.2e / %5.2e / %5.2e\n", med_bl3, max_bl3, min_bl3))
+dev.off()
+

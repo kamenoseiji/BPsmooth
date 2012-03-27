@@ -3,6 +3,7 @@ This github repository containes programs of Allan Variance calculation used in 
 Contents:
 asd.R			: R program to calculate Allan Variance
 specResult.R	: R program to calculate baseline-calibrated spectra with the SBC and Conventional ON-OFF position switching scans.
+specRMS.R		: R program to calculate standard deviations (SDs) in the resultant spectra
 figure1.R		: R procedure to plot figures 
 data_230.dat	: Spectral data for the temprate bandpass (942 kB)
 data_36000.dat	: Spectral data for 10-hour (147.5 MB)

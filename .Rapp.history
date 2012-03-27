@@ -1,0 +1,250 @@
+summary(drop)
+mean(AO)
+mean(exam)
+drop <- data.frame(AO, exam)
+rm(drop)
+var(AO)
+var(drop)
+var(exam)
+sigma <- sqrt( ((length(AO)-1)* var(AO) + (length(exam)-1) * var(exam)) / (length(AO) + length(exam) -2) )
+sigma
+t_denom <- sigma * sqrt( 1/length(AO) + 1/length(exam) )
+t_denom
+t_numerator <- mean(AO) - mean(exam)
+t_numerator
+t_numerator/t_denom
+qt(0.95, 45)
+qt(0.93, 45)
+qt(0.94, 45)
+pt(t_numerator/t_denom, 45)
+pt(t_numerator/t_denom, 45, lower.tail=FALSE)
+(17+21+12)/30
+(42+79+75)/90
+(17+21+12)/24
+(42+79+75)/96
+source('/Users/kameno/Dropbox/20120305ASD.work')
+ls()
+source('/Users/kameno/Dropbox/ASDwork20120301.R')
+ls()
+av10
+min(av10)
+which.min(av10)
+which.min(av10[1:50])
+which.min(av30[1:50])
+which.min(av30[1:20])
+(log(av10[1]) - log(av10[6])) / (log(10) - log(60))
+(log(av10[1]) - log(av10[5])) / (log(10) - log(50))
+(log(av10[1]) - log(av10[7])) / (log(10) - log(70))
+(log(av30[1]) - log(av10[2])) / (log(30) - log(60))
+(log(av30[1]) - log(av30[2])) / (log(30) - log(60))
+lines(integ_case2, onoff_result$rms2bl_med, lty='')
+length(integ_case2)
+length(onoff_result$rms2bl_med)
+lines(integ_case2, onoff_result$rms2bl_med)
+plot(onoff_result$rms1_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='Integration time [min]', ylab='Residual r.m.s. [scaled by Tsys]', pch=19)polygon(c(1:540, 540:1), c(onoff_result$rms1bl_max, rev(onoff_result$rms1bl_min)), col='grey', lty='blank')par(new=T); plot(onoff_result$rms1_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='', ylab='', pch=19)lines(onoff_result$rms1bl_med)polygon(c(integ_case2, rev(integ_case2)), c(onoff_result$rms2bl_max, rev(onoff_result$rms2bl_min)), col='grey', lty='blank')par(new=T); plot(integ_case2, onoff_result$rms2_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='', ylab='', pch=0)lines(integ_case2, onoff_result$rms2bl_med)
+pdf('figure11.pdf')
+plot(onoff_result$rms1_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='Integration time [min]', ylab='Residual r.m.s. [scaled by Tsys]', pch=19)polygon(c(1:540, 540:1), c(onoff_result$rms1bl_max, rev(onoff_result$rms1bl_min)), col='grey', lty='blank')par(new=T); plot(onoff_result$rms1_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='', ylab='', pch=19)lines(onoff_result$rms1bl_med)polygon(c(integ_case2, rev(integ_case2)), c(onoff_result$rms2bl_max, rev(onoff_result$rms2bl_min)), col='grey', lty='blank')par(new=T); plot(integ_case2, onoff_result$rms2_med, log='xy', xlim=c(1,540), ylim=c(5e-5,2e-3), xlab='', ylab='', pch=0)lines(integ_case2, onoff_result$rms2bl_med)
+dev.off()
+length(onoff_result$rms1_med)
+(log(onoff_result$rms1_med[1]) - log(onoff_result$rms1_med[540]))/(log(540))
+(log(onoff_result$rms2_med[1]) - log(onoff_result$rms2_med[540]))/(log(540))
+length(onoff_result$rms2_med)
+(log(onoff_result$rms2_med[1]) - log(onoff_result$rms2_med[405]))/(log(405))
+(log(av10[1]) - log(av10[8])) / (log(10) - log(80))
+ls()
+summary(onoff_result)
+result$rms2_med[1]
+onoff_result$rms2_med[1]
+onoff_result$rms2_med[15]
+onoff_result$rms2_min[15]
+onoff_result$rms2_max[15]
+onoff_result$rms1_med[12]
+onoff_result$rms1_med[20]
+onoff_result$rms1_med[20]/onoff_result$rms2_med[15]
+1/(onoff_result$rms1_med[20]/onoff_result$rms2_med[15])
+onoff_result$rms2_med[5]
+onoff_result$rms2_max[5]
+onoff_result$rms1bl_med[20]
+onoff_result$rms1bl_max[20]
+onoff_result$rms1bl_min[20]
+onoff_result$rms2bl_med[15]
+onoff_result$rms2bl_max[15]
+onoff_result$rms2bl_min[15]
+onoff_result$rms2bl_med[5]
+onoff_result$rms2bl_max[5]
+onoff_result$rms2bl_min[5]
+source('/Users/kameno/Dropbox/20120305ASD.work')
+ls()
+summary(onoff_result)
+onoff_result$rms1_med[24*(1:22)]
+(onoff_result$rms1_med[24*(1:22)] - onoff_result$rms1_min[24*(1:22)])*1e4
+(onoff_result$rms1_max[24*(1:22)] - onoff_result$rms1_med[24*(1:22)])*1e4
+onoff_result$rms1_med[24*(1:22)]*1e4
+onoff_result$rms1_max[24*(1:22)]*1e4
+onoff_result$rms1_min[24*(1:22)]*1e4
+onoff_result$rms1_med[24*2^(0:9)]*1e4
+onoff_result$rms1_med[24*(2^(0:9))]*1e4
+onoff_result$rms1_med[24*(2^(0:7))]*1e4
+onoff_result$rms1_med[24*c(1,2,4,8,6,32,64,128,256,512)]*1e4
+onoff_result$rms1_med[24*c(1,2,4,8,6,32)]*1e4
+onoff_result$rms1_med[4*(2^(0:7))]*1e4
+onoff_result$rms1_max[4*(2^(0:7))]*1e4
+onoff_result$rms1_min[4*(2^(0:7))]*1e4
+onoff_result$rms1_med[24*c(1,2,4,8,6,32)]*1e4
+(onoff_result$rms1_max[4*(2^(0:7))]*1e4 - onoff_result$rms1_med[24*c(1,2,4,8,6,32)]*1e4)
+(onoff_result$rms1_max[4*(2^(0:7))]*1e4) - (onoff_result$rms1_med[24*c(1,2,4,8,6,32)]*1e4)
+onoff_result$rms1_max[4*(2^(0:7))]*1e4
+onoff_result$rms1_med[24*c(1,2,4,8,6,32)]*1e4
+onoff_result$rms1_med[4*(2^(0:7))]*1e4
+(onoff_result$rms1_max[4*(2^(0:7))]*1e4) - (onoff_result$rms1_med[4*(2^(0:7))]*1e4)
+(onoff_result$rms1_min[4*(2^(0:7))]*1e4) - (onoff_result$rms1_med[4*(2^(0:7))]*1e4)
+onoff_result$rms1bl_med[4*(2^(0:7))]*1e4
+(onoff_result$rms1bl_max[4*(2^(0:7))]*1e4) - (onoff_result$rms1bl_med[4*(2^(0:7))]*1e4)
+(onoff_result$rms1bl_min[4*(2^(0:7))]*1e4) - (onoff_result$rms1bl_med[4*(2^(0:7))]*1e4)
+onoff_result$rms2_med[4*(2^(0:7))]*1e4
+onoff_result$rms2_med[3*(2^(0:7))]*1e4
+(onoff_result$rms2_max[3*(2^(0:7))]*1e4) - (onoff_result$rms2_med[3*(2^(0:7))]*1e4)
+(onoff_result$rms2_min[3*(2^(0:7))]*1e4) - (onoff_result$rms2_med[3*(2^(0:7))]*1e4)
+onoff_result$rms2bl_med[3*(2^(0:7))]*1e4
+(onoff_result$rms2bl_max[3*(2^(0:7))]*1e4) - (onoff_result$rms2bl_med[3*(2^(0:7))]*1e4)
+(onoff_result$rms2bl_min[3*(2^(0:7))]*1e4) - (onoff_result$rms2bl_med[3*(2^(0:7))]*1e4)
+a = (1/0.5 + 1/0.5)
+b = (1/0.5 + 1/(0.5*45))
+a/b
+b/a
+2/(1+1/45)
+4/(1+1/45)
+4/(1+1/45)/1.73
+4/(1+1/45)/3
+curve(sqrt())
+curve(sqrt(x))
+source('/Users/kameno/Dropbox/BPsmoothPASJ/OTF_scan.R')
+curve(OTF_rms)
+help(curve)
+curve(OTF_rms, from=0, to=30)
+curve(OTF_rms/OTF_rms(t_off=7), from=0, to=30)
+curve(OTF_rms/OTF_rms(7), from=0, to=30)
+OTF_rms(t_off=7)
+curve(OTF_rms/6, from=0, to=30)
+source('/Users/kameno/Dropbox/BPsmoothPASJ/OTF_scan.R')
+t_optimal()
+t_BP_optimal()
+OTF_rms(t_off=t_optimal())
+OTF_BP_rms(t_BP_optimal())
+afact <- OTF_rms(t_off=t_optimal())
+t_off <- 0.1*(1:300)
+plot(t_off, OTF_rms(t_off)/afact)
+plot(t_off, OTF_rms(t_off)/afact, xlim=c(0,30), ylim=c(0.8,1.4), type='l', xlab='t_off [s]', ylab='Delta TA')
+plot(t_off, OTF_BP_rms(t_off)/afact, xlim=c(0,30), ylim=c(0.8,1.4), type='l', xlab='t_off [s]', ylab='Delta TA')
+plot(t_off, OTF_rms(t_off)/afact, xlim=c(0,30), ylim=c(0.8,1.4), type='l', xlab='t_off [s]', ylab='Delta TA')
+lines(t_off, OTF_rms(t_off)/afact)
+plot(t_off, OTF_rms(t_off)/afact, xlim=c(0,30), ylim=c(0.8,1.4), type='l', xlab='t_off [s]', ylab='Delta TA')
+lines(t_off, OTF_BP_rms(t_off)/afact)
+lines(t_off, OTF_BP_rms(t_off, t_scan=60)/afact)
+lines(t_off, OTF_BP_rms(t_off, Nsw=45, t_scan=60)/afact)
+t_optimal(t_scan=60)
+afact <- OTF_rms(t_off=t_optimal(t_off=16.55672, t_scan=60))
+afact <- OTF_rms(t_off=16.55672, t_scan=60)
+afact
+plot(t_off, OTF_rms(t_off)/afact)
+plot(t_off, OTF_rms(t_off)/afact, type='l', ylim=c(0.8,1.4))
+plot(t_off, OTF_rms(t_off, t_scan=60)/afact, type='l', ylim=c(0.8,1.4))
+lines(t_off, OTF_BP_rms(t_off, Nsw=45, t_scan=60)/afact)
+t_BP_optimal(t_scan = 20)
+t_BP_optimal(t_scan = 40)
+t_BP_optimal(t_scan = 60)
+OTF_rms(t_off=t_optimal(t_scan=20))
+OTF_BP_rms(t_BP_optimal(t_scan=20)) / OTF_rms(t_off=t_optimal(t_scan=20))
+OTF_BP_rms(t_BP_optimal(t_scan=40)) / OTF_rms(t_off=t_optimal(t_scan=40))
+OTF_BP_rms(t_BP_optimal(t_scan=60)) / OTF_rms(t_off=t_optimal(t_scan=60))
+(1/0.8550564)^2
+1/0.51
+source('/Users/kameno/Desktop/ASD_work.R')
+source("https://raw.github.com/kamenoseiji/BPsmooth/master/asd.R")
+source("https://github.com/kamenoseiji/BPsmooth/master/asd.R")
+source("http://github.com/kamenoseiji/BPsmooth/master/asd.R")
+source("https://raw.github.com/kamenoseiji/BPsmooth/master/asd.R")
+source('/Users/kameno/Desktop/ASD_work.R')
+ls()
+summary(spline1092)
+dim(spline1092)
+plot(spline1092)
+plot3d(spline1092)
+persp(spline1092, theta=30, phi=30)
+persp(spline1092, theta=30, phi=-30, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col='lightskyblue')
+persp(spline1092, theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col='blue')
+persp(spline1092, theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col='grey')
+persp(spline1092, theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col='grey', scale=FALSE)
+persp(spline1092, theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col='lightskyblue(100)', scale=FALSE)
+persp(spline1092, theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col='gray((0:100)/100)', scale=FALSE)
+persp(spline1092, theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col=gray((0:100)/100), scale=FALSE)
+help(persp)
+persp((10*(spline1092-0.9), theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col=gray((0:100)/100), scale=FALSE)
+persp(10*(spline1092-0.9), theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col=gray((0:100)/100), scale=FALSE)
+persp(4*(spline1092-0.9), theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col=gray(100), scale=FALSE)
+persp(4*(spline1092-0.9), theta=-30, phi=20, xlab='Time [30 s]', ylab='Frequency [ch]', zlab='Power', col=rainbow(10), scale=FALSE)
+persp(4*(spline1092-0.9), theta=-30, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col=rainbow(10), scale=FALSE)
+persp(4*(spline1092-0.9), theta=-60, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col=rainbow(10), scale=FALSE)
+persp(4*(spline1092-0.9), theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col=rainbow(10), scale=FALSE, shade=0.6)
+persp(4*(spline1092-0.9), theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col=rainbow(10), scale=FALSE, shade=0.6, d=2)
+persp(4*(spline1092-0.9), theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='grey', scale=FALSE, shade=0.6, d=2)
+persp(4*(spline1092-0.9), theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='white', scale=FALSE, shade=0.6, d=2)
+persp(4*(spline1092-0.9), theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col=surf.colors(4*(spline1092-0.9)), scale=FALSE, shade=0.6, d=2)
+persp(4*(spline1092-0.9), theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col=gray(4*(spline1092-0.9)), scale=FALSE, shade=0.6, d=2)
+persp(spline1092[1:128, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='blue', scale=FALSE, shade=0.6, d=2)
+persp(spline1092[1:128, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=0.6, d=2)
+persp(spline1092[1:128, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=0.6, d=2, lwd=0.1)
+persp(spline1092[1:128, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=0.6, d=2, lwd=1)
+persp(4*spline1092[1:128, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=0.6, d=2, lwd=1)
+persp(4*spline1092[1:128, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=0.6, d=2, lwd=1, lcol='red')
+help(persp)
+persp(4*spline1092[1:128, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='white', scale=FALSE, shade=NA, d=2)
+persp(4*spline1092[1:128,], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='white', scale=FALSE, shade=NA, d=2)
+persp(4*spline1092[, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='white', scale=FALSE, shade=NA, d=2)
+persp(4*spline1092[, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='white', scale=FALSE, shade=NA, d=2, lwd=0)
+persp(4*spline1092[, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='white', scale=FALSE, shade=NA, d=2, lwd=0.0001)
+persp(4*spline1092[, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='blue', scale=FALSE, shade=NA, d=2, lwd=0.0001)
+persp(4*spline1092[, 1:128], theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.0001)
+persp(4*spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.0001)
+help(persp)
+persp(4*spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2)
+par(new=T); persp(4*spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, border=NA, lwd=0.001)
+persp(4*spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=0.6, d=2)
+par(new=T); persp(4*spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, border=NA, lwd=0.001)
+library(lattice)
+wireframe(spline1092, shade=TRUE)
+wireframe(4*spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2)
+wireframe(spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2)
+help(wireframe)
+wireframe(spline1092[1:128, 1:128], shade=TRUE)
+wireframe(spline1092[1:128, 1:128], shade=TRUE, aspect=c(1,0.5))
+wireframe(spline1092[1:128, 1:128], shade=TRUE, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue')
+wireframe(spline1092[1:128, 1:128], shade=0.5, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue')
+wireframe(spline1092[1:128, 1:128], shade=FALSE, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue')
+cloud(spline1092[1:128, 1:128], shade=FALSE, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue')
+cloud(spline1092[1:128, 1:128], shade=FALSE, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', light.source=c(10,0,10))
+wireframe(spline1092[1:128, 1:128], shade=FALSE, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', light.source=c(10,0,10))
+wireframe(spline1092[1:128, 1:128], shade=TRUE, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', light.source=c(10,0,10))
+wireframe(spline1092[1:1024, 1:128], shade=TRUE, aspect=c(1,0.5),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', light.source=c(10,0,10))
+wireframe(spline1092[1:1024, 1:128], shade=TRUE, aspect=c(1,0.2),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', light.source=c(10,0,10))
+wireframe(spline1092, shade=TRUE, aspect=c(1,0.2),  xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', light.source=c(10,0,10))
+persp(4*spline1092, theta=-50, phi=20, xlab='Frequency [ch]', ylab='Time [30 s]', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.1)
+persp(1:1024, 1:32768, 4*spline1092, theta=-50, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.5)
+persp(4*spline1092, theta=-50, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.5)
+help(ltype)
+help(lty)
+persp(4*spline1092, theta=-50, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.5, lty='dotted')
+persp(4*spline1092, theta=-50, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.2, lty='dotted')
+persp(4*spline1092, theta=-40, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.2, lty='dotted')
+persp(4*spline1092, theta=-60, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.2, lty='dotted')
+pdf('BPvariation.pdf')
+persp(4*spline1092, theta=-60, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.2, lty='dotted')
+dev.off()
+pdf('BPvariation.pdf')
+persp(4*spline1092, theta=-60, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.2)
+dev.off()
+persp(4*spline1092, theta=-60, phi=20, xlab='Frequency (span = 16 MHz)', ylab='Time (span = 32768 s)', zlab='Power', col='lightskyblue', scale=FALSE, shade=NA, d=2, lwd=0.2)
+cat(sprintf("Template bandpass and spectral data are loaded.\n"))
+setwd()
+setwd('/Users/kameno/Programs/BPsmooth')
+source('figure1.R')
