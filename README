@@ -1,4 +1,4 @@
-This github repository containes programs of Allan Variance calculation used in the paper "Optimization by Smoothed Bandpass Calibration in Radio Spactroscopy" by Yamake et al. (2012).
+This github repository containes programs of Allan Variance calculation used in the paper "Optimization by Smoothed Bandpass Calibration in Radio Spactroscopy" by Yamaki et al. (2012).
 
 Contents:
 asd.R			: R program to calculate Allan Variance
